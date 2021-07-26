@@ -19,7 +19,11 @@ import org.testng.annotations.BeforeMethod;
 public class BrowserStackTestNGTest {
     public WebDriver driver;
     private Local l;
-
+    
+    String username = System.getenv("BROWSERSTACK_USERNAME");
+    String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+    
     @BeforeMethod(alwaysRun = true)
     @org.testng.annotations.Parameters(value = { "config", "environment" })
     @SuppressWarnings("unchecked")
@@ -46,17 +50,17 @@ public class BrowserStackTestNGTest {
             }
         }
 
-        String username = System.getenv("BROWSERSTACK_USERNAME");
+        
         if (username == null) {
             username = (String) config.get("user");
         }
 
-        String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+        
         if (accessKey == null) {
             accessKey = (String) config.get("key");
         }
         
-        String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+        
         if (buildName == null) {
         	buildName = (String) config.get("build");
         }
